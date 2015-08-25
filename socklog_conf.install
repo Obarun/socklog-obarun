@@ -1,0 +1,10 @@
+##create directory, make a link and create config file for each folder 
+post_install() {
+	echo "========> You need to add root users to a group log if is not already the case"
+	socklog-conf unix root log
+	sed -i -e 's:^exec chpst -ulog svlogd \\$:exec chpst -uroot svlogd \\:' /etc/sv/socklog-unix/log/run
+}
+post_remove(){
+	rm -r /var/log/socklog
+	rm -r /etc/sv/socklog-unix
+}
