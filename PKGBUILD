@@ -5,7 +5,7 @@
 
 pkgname=socklog-obarun
 pkgver=2.1.0
-pkgrel=2
+pkgrel=3
 pkgdesc="Small and secure syslogd replacement for use with Runit"
 arch=('x86_64')
 depends=('glibc' 'runit' 'bash')

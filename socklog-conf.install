@@ -5,6 +5,10 @@ post_install() {
 	sed -i -e 's:^exec chpst -ulog svlogd \\$:exec chpst -uroot svlogd \\:' /etc/sv/socklog-unix/log/run
 }
 post_remove(){
+	if [ -L /var/service/socklog-unix ]; then
+		rm /var/service/socklog-unix
+		(sleep 3)
+	fi
 	rm -r /var/log/socklog
 	rm -r /etc/sv/socklog-unix
 }
