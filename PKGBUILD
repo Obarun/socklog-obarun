@@ -1,28 +1,29 @@
 # Maintainer: Eric Vidal <eric@obarun.org>
-# based on the	original https://aur.archlinux.org/packages/socklog/
+# based on the original https://aur.archlinux.org/packages/socklog/
 # 						Maintainer: Andy Weidenbaum <archbaum@gmail.com>
 # 						Contributor: Roberto Alsina <ralsina@kde.org>
 
 pkgname=socklog-obarun
 pkgver=2.1.0
-pkgrel=3
+pkgrel=4
 pkgdesc="Small and secure syslogd replacement for use with Runit"
 arch=('x86_64')
-depends=('glibc' 'runit' 'bash')
+depends=('glibc' 'runit-obarun' 'bash')
 makedepends=('make')
+provides=('socklog')
+replaces=('socklog')
 conflicts=('socklog')
-install=socklog_conf.install
+install=socklog-conf.install
 url="http://smarden.org/socklog/"
 license=('BSD')
-source=(http://smarden.org/socklog/${pkgname%-obarun}-$pkgver.tar.gz
-        headers.patch
-        klog.sv.run
-        socklog_conf.install)
+source=("http://smarden.org/socklog/${pkgname%-obarun}-$pkgver.tar.gz"
+        'headers.patch'
+        'klog.sv.run')
 sha256sums=('aa869a787ee004da4e5509b5a0031bcc17a4ab4ac650c2ce8d4e488123acb455'
             '6687d9d7c93c993b99f47948999c03b6b1402cda78d5f854d093ac881171ddf3'
-            'ae9864e8dc86fb9d0de74bc988bb0f896c4811d12d52a649374903bd3257246a'
-            '58f42f940547574ab059fa9bb20fc20e4046288ed1562f133dc1934f9f97cbbe')
-provides=('socklog')
+            'ae9864e8dc86fb9d0de74bc988bb0f896c4811d12d52a649374903bd3257246a')
+
+validpgpkeys=('6DD4217456569BA711566AC7F06E8FDE7B45DAAC') # Eric Vidal
 
 prepare() {
   cd "$srcdir/admin/${pkgname%-obarun}-$pkgver/src"
